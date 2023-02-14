@@ -103,7 +103,6 @@ GEM
     erubi (1.12.0)
     execjs (2.8.1)
     ffi (1.15.5)
-    ffi (1.15.5)
     file_validators (3.0.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
