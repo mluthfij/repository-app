@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RepositoryApplication</title>
+    <title>Repository</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column text-white">
+    <%= render "layouts/components/navbar" %>
+    <%= render "layouts/components/alert" if notice || alert %>
+    <div id="page-content">
+      <div class="container-fluid my-4">
+        <%= yield %>
+      </div>
+    </div>
+    <%= render "layouts/components/footer" %>
   </body>
 </html>
