@@ -157,10 +157,14 @@ GEM
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
 <<<<<<< HEAD
+<<<<<<< HEAD
     popper_js (2.11.6)
 =======
     orm_adapter (0.5.0)
 >>>>>>> Combine 4 into 1
+=======
+    orm_adapter (0.5.0)
+>>>>>>> install and setup devise
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -264,8 +268,11 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.8, >= 4.8.1)
+<<<<<<< HEAD
   file_validators (~> 3.0)
   image_processing (~> 1.2)
+=======
+>>>>>>> install and setup devise
   importmap-rails
   jbuilder
   puma (~> 5.0)
