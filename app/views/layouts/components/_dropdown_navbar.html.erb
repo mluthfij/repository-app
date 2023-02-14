@@ -7,16 +7,13 @@
         <% end %>
         <%= user_signed_in? ? current_user.username : " " %>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end">
+    <ul class="dropdown-menu dropdown-menu-end <%= cookies[:moon] ? "dropdown-menu-dark" : " " %>">
         <% if user_signed_in? %>
             <li>
-                <%= link_to "Sign out", destroy_user_session_path, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class:"dropdown-item" %>
-            </li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li>
                 <%= link_to "Edit profile", edit_user_registration_path, class:"dropdown-item" %>
+            </li>
+            <li>
+                <%= link_to "Sign out", destroy_user_session_path, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class:"dropdown-item" %>
             </li>
         <% else %>
             <li>
@@ -26,6 +23,9 @@
                 <%= link_to "Sign up", new_user_registration_path, class:"dropdown-item" %>
             </li>
         <% end %>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
         <% if cookies[:moon] %>
             <li>
                 <%= button_to ' Light mode', sun_path, method: :get, class:"dropdown-item bi bi-sun" %>
