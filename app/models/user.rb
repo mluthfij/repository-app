@@ -6,6 +6,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :trackable ,authentication_keys: [:login]
          
+  has_one_attached :avatar
+  
+  validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
+  file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }
+  
   validates :username, presence: true, 
             uniqueness: { case_sensitive: false },
             length: { minimum: 1, maximum: 100 }
