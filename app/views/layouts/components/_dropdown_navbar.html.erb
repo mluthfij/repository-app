@@ -1,0 +1,39 @@
+<div class="dropdown">
+    <button type="button" class="btn btn-link text-decoration-none dropdown-toggle <%= cookies[:moon] ? "text-white" : "text-dark" %>" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        <% if user_signed_in? && current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+        <% else %>
+            <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+        <% end %>
+        <%= user_signed_in? ? current_user.username : " " %>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <% if user_signed_in? %>
+            <li>
+                <%= link_to "Sign out", destroy_user_session_path, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class:"dropdown-item" %>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <%= link_to "Edit profile", edit_user_registration_path, class:"dropdown-item" %>
+            </li>
+        <% else %>
+            <li>
+                <%= link_to "Sign in", new_user_session_path, class:"dropdown-item" %>
+            </li>
+            <li>
+                <%= link_to "Sign up", new_user_registration_path, class:"dropdown-item" %>
+            </li>
+        <% end %>
+        <% if cookies[:moon] %>
+            <li>
+                <%= button_to ' Light mode', sun_path, method: :get, class:"dropdown-item bi bi-sun" %>
+            </li>
+        <% else %>
+            <li>
+                <%= button_to ' Dark Mode', moon_path, method: :get, class:"dropdown-item bi bi-moon" %>
+            </li>
+        <% end %>
+    </ul>
+</div>

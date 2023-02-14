@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="d-flex flex-column text-white">
+  <body class="d-flex flex-column <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>">
     <%= render "layouts/components/navbar" %>
     <%= render "layouts/components/alert" if notice || alert %>
     <div id="page-content">
