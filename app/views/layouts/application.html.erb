@@ -19,21 +19,5 @@
       </div>
     </div>
     <%= render "layouts/components/footer" %>
-  <body>
-    <hr>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <hr>
-    <%= link_to "Home", root_path %> ||
-    <% if user_signed_in? %>
-      <%= link_to "Sign out", destroy_user_session_path, data: { turbo_confirm: "Are you sure?", turbo_method: :delete } %> ||
-      <%= link_to "Edit profile", edit_user_registration_path %> ||
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path %> ||
-      <%= link_to "Sign up", new_user_registration_path %> ||
-    <% end %>
-
-    <hr>
-    <%= yield %>
   </body>
 </html>
