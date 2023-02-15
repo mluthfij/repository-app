@@ -1,0 +1,25 @@
+<h1>Folders</h1>
+
+<div id="folders">
+  <div class="list-group">
+    <span class="list-group-item nav-bg">
+      <div class="row">
+        <div class="col text-start">
+            <% if user_signed_in? && current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar, width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+            <% else %>
+              <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+            <% end %>
+            <%= user_signed_in? ? current_user.username : " " %>
+        </div>
+        <div class="col text-end">
+          <%= link_to " New folder", new_folder_path, class:"bi bi-folder-plus btn btn-dark" %>
+        </div>
+      </div>
+    </span>
+    <% @folders.each do |folder| %>
+      <%= render folder %>
+    <% end %>
+  </div>
+</div>
+
