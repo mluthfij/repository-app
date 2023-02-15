@@ -1,72 +1,92 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-center">
+            <% if current_user.avatar.attached? %>
+                <%= link_to (image_tag current_user.avatar, width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;"), current_user.avatar.blob %>
+            <% else %>
+                <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
+            <% end %>
+            <p>
+                <strong>
+                    <%= current_user.email %>
+                </strong><br>
+                <Strong>
+                    Join <%= time_ago_in_words(current_user.created_at) %> ago
+                </Strong>
+            </p>
 
-  <% if current_user.avatar.attached? %>
-      <%= link_to (image_tag current_user.avatar, width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;"), current_user.avatar.blob %>
-  <% else %>
-      <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
-  <% end %>
+            <div class="my-3">
+              <div class="alert alert-danger" role="alert">
+                <h3>Cancel my account</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { turbo_confirm: 'Are you sure?' }, method: :delete, class:"btn btn-danger" %></p>
 
-  <!--Avatar Upload Field-->
-  <div class="mb-3">
-    <label for="formFileLg" class="form-label">
-      Avatar:
-      <% if current_user.avatar.present? %>
-        <br />
-        Current: <%= current_user.avatar.filename.to_s %>
+                <%= link_to "Back", :back, class:"btn btn-dark" %>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <!--Avatar Upload Field-->
+        <div class="mb-3">
+          <label for="formFileLg" class="form-label">
+            <% if current_user.avatar.present? %>
+              Current avatar: <%= current_user.avatar.filename.to_s %>
+            <% end %>
+          </label>
+          <%= f.file_field :avatar, class: "form-control form-control-lg" %>
+        </div>
+        <!--Avatar Upload Field-->
+
+        <div class="form-floating mb-3 text-dark">
+          <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"email", autofocus: true, autocomplete: "email" %>
+          <%= f.label :email, 'Email', for:"floatingInput" %>
+        </div>
+
+        <div class="form-floating mb-3 text-dark">
+          <%= f.text_field :username, class:"form-control", id:"floatingInput", placeholder:"username" %>
+          <%= f.label :username, for:"floatingInput" %>
+        </div>
+
+        <div class="form-floating mb-3 text-dark">
+          <%= f.number_field :phone, class:"form-control", id:"floatingInput", placeholder:"phone" %>
+          <%= f.label :phone, for:"floatingInput" %>
+        </div>
+
+        
+        <div class="alert alert-info" role="alert">
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+
+          <i>(leave blank if you don't want to change it)</i><br />
+          
+          <div class="form-floating mb-3">
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", id:"floatingInput", placeholder:"password" %>
+            <%= f.label :password, for:"floatingInput" %> 
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", id:"floatingInput", placeholder:"new password" %>
+            <%= f.label :password_confirmation, for:"floatingInput" %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", id:"floatingInput", placeholder:"current password" %>
+            <%= f.label :current_password, for:"floatingInput" %> <i>(we need your current password to confirm your changes)</i><br />
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", class:"btn btn-success w-100" %>
+          </div>
+        </div>
       <% end %>
-    </label>
-    <%= f.file_field :avatar, class: "form-control form-control-lg" %>
-  </div>
-  <!--Avatar Upload Field-->
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+    </div>
+</div>
