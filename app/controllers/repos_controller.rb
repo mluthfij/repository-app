@@ -12,7 +12,7 @@ class ReposController < ApplicationController
 
   # GET /repos/new
   def new
-    @repo = Repo.new
+    @repo = current_user.repos.build
   end
 
   # GET /repos/1/edit
@@ -21,7 +21,7 @@ class ReposController < ApplicationController
 
   # POST /repos or /repos.json
   def create
-    @repo = Repo.new(repo_params)
+    @repo = current_user.repos.build(repo_params)
 
     respond_to do |format|
       if @repo.save
@@ -65,6 +65,6 @@ class ReposController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def repo_params
-      params.require(:repo).permit(:name)
+      params.require(:repo).permit(:name, :user_id)
     end
 end
