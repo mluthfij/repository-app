@@ -40,7 +40,7 @@
               </small>
               <% if params[:action] == 'show' %>
                 <% if current_user.id == repo.user.id %>
-                  <%= link_to repo.private_role == true ? "Private" : "Public", private_fiture_path(repo), data: { turbo_method: :patch }, class:repo.private_role == true ? "btn btn-danger" : "btn btn-warning" %>
+                  <%= link_to repo.private_role == true ? "Public" : "Private", private_fiture_path(repo), data: { turbo_method: :patch }, class:repo.private_role == true ? "btn btn-warning" : "btn btn-danger" %>
                 <% end %>
               <% end %>
             </div>
