@@ -1,0 +1,9 @@
+<div id="<%= dom_id repo %>">
+        
+  <div class="card h-100 <%= cookies[:moon] ? "bg-dark" : "nav-bg" %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to repo.name, repo, class:"text-decoration-custom" %></h5>
+      <p class="card-text <%= cookies[:moon] ? "text-light" : "text-dark" %>">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+</div>

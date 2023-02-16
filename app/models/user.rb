@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :trackable ,authentication_keys: [:login]
          
   has_one_attached :avatar
-  has_many :folders
+  has_many :repos
   
   validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
   file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }

@@ -52,9 +52,17 @@ body {
     padding: 10px;
 }
 
-.text-decoration-custom {
+.text-decoration-custom-color {
     text-decoration: none;
     color: #222831;
+}
+
+.text-decoration-custom-color:hover {
+    text-decoration: underline;
+}
+
+.text-decoration-custom {
+    text-decoration: none;
 }
 
 .text-decoration-custom:hover {

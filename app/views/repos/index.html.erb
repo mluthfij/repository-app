@@ -1,0 +1,14 @@
+<h1>
+  Repos
+  <%= link_to " New repo", new_repo_path, class:"btn btn-dark bi bi-plus-square-fill" %>
+</h1>
+
+<div id="repos">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @repos.each do |repo| %>
+      <div class="col">
+        <%= render repo %>
+      </div>
+    <% end %>
+  </div>
+</div>

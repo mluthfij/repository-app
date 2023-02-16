@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :repos
   get '/moon', to: 'application#moon', as: 'moon'
   get '/sun', to: 'application#sun', as: 'sun'
   devise_for :users
