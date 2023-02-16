@@ -7,10 +7,10 @@
           <div class="col">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a><%= link_to @repo.user.username, profile_path(@repo.user.to_param), class:"text-custom2" %></a></li>
+                <li class="breadcrumb-item"><a><%= link_to @repo.user.username, profile_path(@repo.user.to_param), class:"text-decoration-custom" %></a></li>
                 <li class="breadcrumb-item" aria-current="page">
                   <strong>
-                    <%= link_to @repo.name, @repo, class:"text-custom2" %>
+                    <%= link_to @repo.name, @repo, class:"text-decoration-custom" %>
                   </strong>
                 </li>
               </ol>
@@ -31,30 +31,29 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item" aria-current="page">
             <strong>
-              <%= link_to @repo.name, @repo, class:"text-custom2" %>
+              <%= link_to @repo.name, @repo, class:"text-decoration-custom" %>
             </strong>
           </li>
-            <% if !@item.folder.nil? %>
-              <li class="breadcrumb-item" aria-current="page"><%= link_to '...', [@repo, @item.folder], class:"text-custom2" %>
-            <% end %>
-            <% @item.posts.each do |file| %>
-              <li class="breadcrumb-item active" aria-current="page"><%= file.filename %></li>
-            <% end %>
+          <% if !@item.folder.nil? %>
+            <li class="breadcrumb-item" aria-current="page"><%= link_to '...', [@repo, @item.folder], class:"text-decoration-custom" %>
+          <% end %>
+          <% @item.posts.each do |file| %>
+            <li class="breadcrumb-item active" aria-current="page"><%= file.filename %></li>
+          <% end %>
         </ol>
       </nav>
     </div>
 
     <div class="card">
-    <div class="card-header">
-      <% if @repo.user.avatar.present? %>
-        <%= link_to image_tag(@repo.user.avatar.variant(resize_to_fill: [150, 150]), class: "avatar-sm rounded-circle",  alt:"Avatar"), profile_path(@repo.user.to_param) %>
-      <% else %>
-        <%= link_to image_tag("https://png.pngtree.com/png-vector/20220608/ourmid/pngtree-user-mysterious-anonymous-account-vector-png-image_4816288.png", class:"avatar-sm img-thumbnail rounded-circle",  alt:"Avatar"), profile_path(@repo.user.to_param) %>
-      <% end %>
-        <%= link_to @repo.user.username, profile_path(@repo.user.to_param), class:"text-custom" %> 
-        <small class="text-muted">. <%= time_ago_in_words(@item.created_at) %> ago
-        </small>
-    </div>
+      <div class="card-header">
+        <% if @repo.user.avatar.present? %>
+          <%= link_to (image_tag(@repo.user.avatar, width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;", alt:"Avatar")), profile_path(@repo.user) %>
+        <% else %>
+          <%= link_to (image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;", alt:"Avatar"), profile_path(@repo.user) %>
+        <% end %>
+        <%= link_to @repo.user.username, profile_path(@repo.user.to_param), class:"text-decoration-custom-color" %> 
+        <small class="text-muted">. <%= time_ago_in_words(@item.created_at) %> ago</small>
+      </div>
       <div class="card-body text-center">
         <% @item.posts.each do |file| %>
           <% if file.image? %>
@@ -70,9 +69,9 @@
           <% else %>
             <% if file.content_type == 'application/pdf' %>
               <embed src="<%= rails_blob_path(file, disposition: "file") %>" type="<%= file.content_type %>" style="width:100%; height:500px;">
-              <br>Download: <%= link_to file.filename, rails_blob_path(file, disposition: "file"), class:"text-custom" %>
+              <br>Download: <%= link_to file.filename, rails_blob_path(file, disposition: "file"), class:"text-decoration-custom-color" %>
             <% else %>
-              Download: <%= link_to file.filename, rails_blob_path(file, disposition: "file"), class:"text-custom" %>
+              Download: <%= link_to file.filename, rails_blob_path(file, disposition: "file"), class:"text-decoration-custom-color" %>
             <% end %>
           <% end %>
         <% end %>

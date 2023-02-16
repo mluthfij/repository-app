@@ -31,10 +31,10 @@
                 <div style="min-height:400px;">
                     <%= link_to 'Create a new repository', new_repo_path, class:"btn btn-success my-2" if @profile.id == current_user.id %>
                     <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <% @repos.each do |repo| %>
-                            <div class="col">
-                                <%= render repo %>
-                            </div>
+                        <% if @profile.id == current_user.id %>
+                            <%= render @repos %>
+                        <% else %>
+                            <%= render @repos.where(private_role: false) %>
                         <% end %>
                     </div>
                 </div>

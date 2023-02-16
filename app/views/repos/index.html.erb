@@ -5,10 +5,8 @@
 
 <div id="repos">
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% @repos.each do |repo| %>
-      <div class="col">
-        <%= render repo %>
-      </div>
+    <% @repos.where(private_role: false).each do |repo| %>
+      <%= render repo %>
     <% end %>
   </div>
 </div>
