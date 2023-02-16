@@ -1,0 +1,47 @@
+<%# <%= render "repos/search" %>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="text-center">
+                <h4 class="badge rounded-pill text-bg-warning">
+                    has <%= @profile.repos.count %> repositories
+                </h4>
+            </div>
+            <div class="text-center">
+                <% if @profile.avatar.attached? %>
+                    <%= link_to (image_tag @profile.avatar, width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;"), @profile.avatar.blob %>
+                <% else %>
+                    <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
+                <% end %>
+            </div>
+            <div class="text-center text-white">
+                <h3>
+                    <%= @profile.username %>
+                </h3>
+                <h6>
+                    <%= @profile.email %>
+                </h6>
+                <div class="d-grid gap-2">
+                    <%= link_to 'Edit profile', edit_user_registration_path, class:"btn btn-dark" if @profile.id == @profile.id %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="mb-3">
+                <div style="min-height:400px;">
+                    <%= link_to 'Create a new repository', new_repo_path, class:"btn btn-success my-2" if @profile.id == current_user.id %>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <% @repos.each do |repo| %>
+                            <div class="col">
+                                <%= render repo %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="my-2">
+                    <%# <%= paginate @repos %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

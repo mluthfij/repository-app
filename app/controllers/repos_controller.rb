@@ -75,7 +75,8 @@ class ReposController < ApplicationController
   end
 
   def correct_user
-    @repo = current_user.repos.find_by_slug(params[:id])
+    @repo = current_user.repos.find_by_id(params[:id])
+    # @repo = current_user.repos.find_by_slug(params[:id])
     redirect_to repos_path, notice: "Not authorized to edit this repo" if @repo.nil?
   end
   

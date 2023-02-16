@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  patch 'repos/:id', to: 'repos#private_fiture', as: 'private_fiture', :via => :update
+  resources :profiles, only: :show
   resources :repos do
     resources :folders, only: [:show, :create, :destroy]
     resources :items, only: [:show, :create, :destroy]
