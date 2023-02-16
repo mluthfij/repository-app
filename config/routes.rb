@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :repos do
     resources :folders, only: [:show, :create, :destroy]
+    resources :items, only: [:show, :create, :destroy]
   end
   get '/moon', to: 'application#moon', as: 'moon'
   get '/sun', to: 'application#sun', as: 'sun'

@@ -31,7 +31,7 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <%= render partial: 'folders/form', locals: { repo: @folder.repo, parent: @folder } %>
+                <%= render partial: 'folders/form', locals: { repo: @folder.repo, subfolder: @folder } %>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <%# <%= render partial: 'items/form', locals: { repo: @folder.repo, folder: @folder } %> %>
+                <%= render partial: 'items/form', locals: { repo: @folder.repo, folder: @folder } %>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
     </h4>
     </div>
     <%= render @folder.folders.where(subfolder_id: @folder).order(id: :desc) %>
-    <%# <%= render @repo.items.where(folder_id: @folder).order(id: :desc) %> %>
+    <%= render @repo.items.where(folder_id: @folder).order(id: :desc) %>
   </div>
 </div>
 </div>

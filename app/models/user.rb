@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :repos, dependent: :destroy
   has_many :folders, dependent: :destroy
+  has_many :items, dependent: :destroy
   
   validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
   file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }

@@ -1,5 +1,8 @@
 class ReposController < ApplicationController
-  before_action :set_repo, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :set_repo, only: %i[ show edit update destroy private_fiture show_public ]
+  before_action :correct_user, only: [:edit, :update, :destroy, :private_fiture]
+  before_action :show_public, only: [:show]
 
   # GET /repos or /repos.json
   def index
@@ -57,14 +60,32 @@ class ReposController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_repo
-      @repo = Repo.find(params[:id])
+  def private_fiture
+    if @repo.private_role == true
+      @repo.update_attribute(:private_role, false)
+    elsif @repo.private_role == false
+      @repo.update_attribute(:private_role, true)
     end
+    redirect_to request.referrer
+  end
 
-    # Only allow a list of trusted parameters through.
-    def repo_params
-      params.require(:repo).permit(:name, :user_id)
-    end
+  private
+  def show_public
+    redirect_to repos_path, notice: "This repo is private!" if @repo.private_role == true unless current_user.id == @repo.user_id
+  end
+
+  def correct_user
+    @repo = current_user.repos.find_by_slug(params[:id])
+    redirect_to repos_path, notice: "Not authorized to edit this repo" if @repo.nil?
+  end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_repo
+    @repo = Repo.find(params[:id]) rescue not_found
+  end
+
+  # Only allow a list of trusted parameters through.
+  def repo_params
+    params.require(:repo).permit(:name, :user_id)
+  end
 end

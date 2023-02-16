@@ -47,7 +47,7 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <%= render partial: 'folders/form', locals: { repo: @repo, parent: nil } %>
+                <%= render partial: 'folders/form', locals: { repo: @repo, subfolder: nil } %>
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <%# <%= render partial: 'items/form', locals: { repo: @repo, folder_id: nil } %> %>
+                <%= render partial: 'items/form', locals: { repo: @repo, folder_id: nil } %>
               </div>
             </div>
           </div>
@@ -78,11 +78,11 @@
         <% end %>
       <%# <%= link_to @repo.user.username, profile_path(@repo.user), class:"text-custom" %> %>
       <span class="badge rounded-pill text-bg-warning">
-        <%# Has <%= @repo.folders.count + @repo.items.count %> Items %>
+        Has <%= @repo.folders.count + @repo.items.count %> Items
       </span>
     </div>
     <%= render @repo.folders.where(subfolder_id: nil).order(id: :desc) %>
-    <%# <%= render @repo.items.where(folder_id: nil).order(id: :desc) %> %>
+    <%= render @repo.items.where(folder_id: nil).order(id: :desc) %>
   </div>
 </div>
 </div>

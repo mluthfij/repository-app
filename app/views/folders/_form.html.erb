@@ -1,6 +1,6 @@
 <%= form_for([@repo, @repo.folders.build]) do |f| %>
-    <% if !parent.nil? %>
-        <%= f.hidden_field :parent_id, value: parent.id %>
+    <% if !subfolder.nil? %>
+        <%= f.hidden_field :subfolder_id, value: subfolder.id %>
     <% end %>
     <%= f.hidden_field :user_id, value: current_user.id %>
 
