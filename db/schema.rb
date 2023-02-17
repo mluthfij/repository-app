@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_16_024203) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_091641) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_024203) do
     t.datetime "updated_at", null: false
     t.integer "folder_id"
     t.integer "user_id"
+    t.string "item_file"
+    t.string "item_extension"
     t.index ["repo_id"], name: "index_items_on_repo_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end

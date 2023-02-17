@@ -2,7 +2,7 @@
     <%#  %>
     <div class="mb-3">
         <% if !@repos.blank? %>
-            <h2>Repositories</h2>
+            <h2><%= @repos.count if @repos.count != 0 %> <%= @repos.count > 1 ? "Repositories" : "Repository" %></h2>
             <hr>
             <% @repos.each do |repo| %>
                 <%= link_to repo, class:"text-decoration-none text-dark" do %>
@@ -15,10 +15,10 @@
                 <% end %>
             <% end %>
         <% else %>
-            <h2>Repositories</h2>
+            <h2>Repository</h2>
             <hr>
             <div class="list-group">
-                <li class="list-group-item list-group-item-action">
+                <li class="list-group-item">
                     can't find the repositories!
                 </li>
             </div>
@@ -30,7 +30,7 @@
     <%#  %>
     <div class="mb-3">
         <% if !@folders.blank? %>
-            <h2>Folders</h2>
+            <h2><%= @folders.count if @folders.count != 0 %> <%= @folders.count > 1 ? "Folders" : "Folder" %></h2>
             <hr>
             <% @folders.each do |folder| %>
                 <%= link_to [folder.repo, folder], class:"text-decoration-none text-dark" do %>
@@ -43,24 +43,79 @@
                 <% end %>
             <% end %>
         <% else %>
-            <h2>foldersitories</h2>
+            <h2>Folder</h2>
             <hr>
             <div class="list-group">
-                <li class="list-group-item list-group-item-action">
-                    can't find the foldersitories!
+                <li class="list-group-item">
+                    can't find the folders!
                 </li>
             </div>
         <% end %>
     </div>
     <%#  %>
 
+    
+    <%#  %>
+    <div class="mb-3">
+        <% if !@items.blank? %>
+            <h2><%= @items.count if @items.count != 0 %> <%= @items.count > 1 ? "Items" : "Item" %></h2>
+            <hr>
+            <% @items.each do |item| %>
+                <%= link_to [item.repo, item], class:"text-decoration-none text-dark" do %>
+                    <div class="list-group">
+                        <li class="list-group-item list-group-item-action">
+                            <% item.posts.each do |file| %>
+                                <% if file.image? %>
+                                    <i class="bi bi-file-earmark-image"></i>
+                                <% elsif file.audio? %>
+                                    <i class="bi bi-file-earmark-music"></i>
+                                <% elsif file.video? %>
+                                    <i class="bi bi-file-earmark-play"></i>
+                                <% else %>
+                                    <i class="bi bi-file-earmark"></i>
+                                <% end %>
+                                <%= file.filename %>
+                            <% end %>
+                        </li>
+                    </div>
+                <% end %>
+            <% end %>
+        <% else %>
+            <h2>Item</h2>
+            <hr>
+            <div class="list-group">
+                <li class="list-group-item">
+                    can't find the items!
+                </li>
+            </div>
+        <% end %>
+    </div>
 <% else %>
-    <p>
-        can't find the result!
-    </p>
+    <div class="mb-3">
+        <h2>Repository</h2>
+        <hr>
+        <div class="list-group">
+            <li class="list-group-item">
+                can't find the repositories!
+            </li>
+        </div>
+    </div>
+    <div class="mb-3">
+        <h2>Folder</h2>
+        <hr>
+        <div class="list-group">
+            <li class="list-group-item">
+                can't find the folders!
+            </li>
+        </div>
+    </div>
+    <div class="mb-3">
+        <h2>Item</h2>
+        <hr>
+        <div class="list-group">
+            <li class="list-group-item">
+                can't find the items!
+            </li>
+        </div>
+    </div>
 <% end %>
-
-<%# <%= @repos.blank? %>
-<%# <%= @repos.count == 0 %>
-<%# <%= @folders.count == 0 %>
-<%# <%= !params[:q].blank? %>
