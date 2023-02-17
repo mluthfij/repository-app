@@ -1,0 +1,66 @@
+<% if !params[:q].blank? %>
+    <%#  %>
+    <div class="mb-3">
+        <% if !@repos.blank? %>
+            <h2>Repositories</h2>
+            <hr>
+            <% @repos.each do |repo| %>
+                <%= link_to repo, class:"text-decoration-none text-dark" do %>
+                    <div class="list-group">
+                        <li class="list-group-item list-group-item-action">
+                            <i class="bi bi-box2-fill"></i>
+                            <%= repo.name %>
+                        </li>
+                    </div>
+                <% end %>
+            <% end %>
+        <% else %>
+            <h2>Repositories</h2>
+            <hr>
+            <div class="list-group">
+                <li class="list-group-item list-group-item-action">
+                    can't find the repositories!
+                </li>
+            </div>
+        <% end %>
+    </div>
+    <%#  %>
+
+    
+    <%#  %>
+    <div class="mb-3">
+        <% if !@folders.blank? %>
+            <h2>Folders</h2>
+            <hr>
+            <% @folders.each do |folder| %>
+                <%= link_to [folder.repo, folder], class:"text-decoration-none text-dark" do %>
+                    <div class="list-group">
+                        <li class="list-group-item list-group-item-action">
+                            <i class="bi bi-folder-fill"></i>
+                            <%= folder.name %>
+                        </li>
+                    </div>
+                <% end %>
+            <% end %>
+        <% else %>
+            <h2>foldersitories</h2>
+            <hr>
+            <div class="list-group">
+                <li class="list-group-item list-group-item-action">
+                    can't find the foldersitories!
+                </li>
+            </div>
+        <% end %>
+    </div>
+    <%#  %>
+
+<% else %>
+    <p>
+        can't find the result!
+    </p>
+<% end %>
+
+<%# <%= @repos.blank? %>
+<%# <%= @repos.count == 0 %>
+<%# <%= @folders.count == 0 %>
+<%# <%= !params[:q].blank? %>

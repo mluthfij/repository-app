@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/search', to: 'search#index', as: 'search'
   patch 'repos/:id', to: 'repos#private_fiture', as: 'private_fiture', :via => :update
   resources :profiles, only: :show
   resources :repos do

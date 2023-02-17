@@ -74,3 +74,4 @@ end
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'file_validators', '~> 3.0'
+gem 'ransack', '~> 3.2', '>= 3.2.1'

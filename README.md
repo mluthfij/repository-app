@@ -22,3 +22,20 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+<% @items.each do |item| %>
+    <% item.posts.each do |file| %>
+        <% if file.image? %>
+            <i class="bi bi-file-earmark-image"></i>
+        <% elsif file.audio? %>
+            <i class="bi bi-file-earmark-music"></i>
+        <% elsif file.video? %>
+            <i class="bi bi-file-earmark-play"></i>
+        <% else %>
+            <i class="bi bi-file-earmark"></i>
+        <% end %>
+        <%= link_to file.filename, [item.repo, item], class:"text-decoration-custom-color" %>
+    <% end %>
+<% end %>
