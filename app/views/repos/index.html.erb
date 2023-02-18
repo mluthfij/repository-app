@@ -1,4 +1,4 @@
-<h1>
+<h1 class="mb-3">
   Repos
   <%= link_to " New repo", new_repo_path, class:"btn btn-dark bi bi-plus-square-fill" %>
 </h1>
@@ -9,4 +9,8 @@
       <%= render repo %>
     <% end %>
   </div>
+</div>
+
+<div class="my-3">
+  <%= render "layouts/components/pagination", obj: @repos.where(private_role: false) %>
 </div>

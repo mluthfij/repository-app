@@ -1,0 +1,44 @@
+<div class="mb-3">
+    <% if !items.blank? %>
+        <h2><%= items.count if items.count != 0 %> <%= items.count > 1 ? "Items" : "Item" %></h2>
+        <hr>
+        <% items.each do |item| %>
+            <%= link_to [item.repo, item], class:"text-decoration-none text-dark" do %>
+                <div class="list-group">
+                    <li class="list-group-item list-group-item-action">
+                        <% item.posts.each do |file| %>
+                            <div class="row">
+                                <div class="col">
+                                    <% if file.image? %>
+                                        <i class="bi bi-file-earmark-image"></i>
+                                    <% elsif file.audio? %>
+                                        <i class="bi bi-file-earmark-music"></i>
+                                    <% elsif file.video? %>
+                                        <i class="bi bi-file-earmark-play"></i>
+                                    <% else %>
+                                        <i class="bi bi-file-earmark"></i>
+                                    <% end %>
+                                    <%= file.filename %>
+                                    <% if item.user.id == current_user.id %>
+                                        <span class="badge rounded-pill text-bg-primary">My Repo</span>
+                                    <% end %>
+                                </div>
+                                <div class="col text-end">
+                                    Created <%= time_ago_in_words(item.created_at) %> ago
+                                </div>
+                            </div>
+                        <% end %>
+                    </li>
+                </div>
+            <% end %>
+        <% end %>
+    <% else %>
+        <h2>Item</h2>
+        <hr>
+        <div class="list-group">
+            <li class="list-group-item">
+                can't find the items!
+            </li>
+        </div>
+    <% end %>
+</div>

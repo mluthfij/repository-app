@@ -6,7 +6,7 @@ class ReposController < ApplicationController
 
   # GET /repos or /repos.json
   def index
-    @repos = Repo.all
+    @repos = Repo.order(:name).page(params[:page]).per(9)
   end
 
   # GET /repos/1 or /repos/1.json
