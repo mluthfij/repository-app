@@ -5,7 +5,7 @@
 
 <div id="repos">
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% @repos.where(private_role: false).each do |repo| %>
+    <% @repos.order(id: :desc).where(private_role: false).each do |repo| %>
       <%= render repo %>
     <% end %>
   </div>

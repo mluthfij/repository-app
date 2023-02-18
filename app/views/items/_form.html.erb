@@ -8,8 +8,8 @@
         <%= f.label :posts, 'Item name*', class:"form-label" %>
         <%= f.file_field :posts, id:'inputfile', onchange:'getoutput();', class:"form-control", direct_upload: true %>    
     </p>
-        <%= f.text_field :item_file, id:'outputfile' %>
-        <%= f.text_field :item_extension, id:'extension' %>
+        <%= f.hidden_field :item_file, id:'outputfile' %>
+        <%= f.hidden_field :item_extension, id:'extension' %>
     <p>
         <%= f.submit 'Upload item', class:"btn btn-success" %>
     </p>

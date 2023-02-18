@@ -6,7 +6,7 @@ class ReposController < ApplicationController
 
   # GET /repos or /repos.json
   def index
-    @repos = Repo.order(:name).page(params[:page]).per(9)
+    @repos = Repo.page(params[:page]).per(9)
   end
 
   # GET /repos/1 or /repos/1.json
@@ -87,6 +87,6 @@ class ReposController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def repo_params
-    params.require(:repo).permit(:name, :user_id)
+    params.require(:repo).permit(:name, :user_id, :body)
   end
 end
