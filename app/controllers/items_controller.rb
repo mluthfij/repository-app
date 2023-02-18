@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
       # params[:item].permit(:name, :posts, :folder_id)
       params
       .require(:item)
-      .permit(:posts, :folder_id, :user_id, :item_file, :item_extension)
+      .permit(:posts, :folder_id, :user_id, :item_file, :item_extension, :private_role)
       .merge(repo_id: params[:repo_id])
     end
   end

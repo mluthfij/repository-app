@@ -1,0 +1,34 @@
+<div class="mb-3">
+    <% if !repositories.where(private_role: false).blank? %>
+        <h2><%= repositories.where(private_role: false).count if repositories.where(private_role: false).count != 0 %> <%= repositories.where(private_role: false).count > 1 ? "Repositories" : "Repository" %></h2>
+        <hr>
+        <% repositories.where(private_role: false).each do |repo| %>
+            <%= link_to repo, class:"text-decoration-none text-dark" do %>
+                <div class="list-group">
+                    <li class="list-group-item list-group-item-action">
+                        <div class="row">
+                            <div class="col">
+                                <i class="bi bi-box2-fill"></i>
+                                <%= repo.user.username %> / <%= repo.name %>
+                                <% if repo.user.id == current_user.id %>
+                                    <span class="badge rounded-pill text-bg-primary">My Repo</span>
+                                <% end %>
+                            </div>
+                            <div class="col text-end">
+                                Created <%= time_ago_in_words(repo.created_at) %> ago
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            <% end %>
+        <% end %>
+    <% else %>
+        <h2>Repository</h2>
+        <hr>
+        <div class="list-group">
+            <li class="list-group-item">
+                can't find the repositories!
+            </li>
+        </div>
+    <% end %>
+</div>

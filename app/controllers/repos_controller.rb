@@ -6,7 +6,7 @@ class ReposController < ApplicationController
 
   # GET /repos or /repos.json
   def index
-    @repos = Repo.all
+    @repos = Repo.page(params[:page]).per(9)
   end
 
   # GET /repos/1 or /repos/1.json
@@ -63,8 +63,12 @@ class ReposController < ApplicationController
   def private_fiture
     if @repo.private_role == true
       @repo.update_attribute(:private_role, false)
+      @repo.folders.update_all(private_role: false)
+      @repo.items.update_all(private_role: false)
     elsif @repo.private_role == false
       @repo.update_attribute(:private_role, true)
+      @repo.folders.update_all(private_role: false)
+      @repo.items.update_all(private_role: true)
     end
     redirect_to request.referrer
   end
@@ -87,6 +91,6 @@ class ReposController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def repo_params
-    params.require(:repo).permit(:name, :user_id)
+    params.require(:repo).permit(:name, :user_id, :body)
   end
 end

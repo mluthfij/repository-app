@@ -1,12 +1,16 @@
-<h1>
+<h1 class="mb-3">
   Repos
   <%= link_to " New repo", new_repo_path, class:"btn btn-dark bi bi-plus-square-fill" %>
 </h1>
 
 <div id="repos">
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% @repos.where(private_role: false).each do |repo| %>
+    <% @repos.order(id: :desc).where(private_role: false).each do |repo| %>
       <%= render repo %>
     <% end %>
   </div>
+</div>
+
+<div class="my-3">
+  <%= render "layouts/components/pagination", obj: @repos.where(private_role: false) %>
 </div>

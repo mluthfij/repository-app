@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_profile
     def show
-        @repos = @profile.repos.all
+        @repos = @profile.repos.order(:name).page(params[:page]).per(4)
     end
 
     private
