@@ -1,8 +1,8 @@
 <div class="mb-3">
-    <% if !items.blank? %>
-        <h2><%= items.count if items.count != 0 %> <%= items.count > 1 ? "Items" : "Item" %></h2>
+    <% if !items.where(private_role: false).blank? %>
+        <h2><%= items.where(private_role: false).count if items.where(private_role: false).count != 0 %> <%= items.where(private_role: false).count > 1 ? "Items" : "Item" %></h2>
         <hr>
-        <% items.each do |item| %>
+        <% items.where(private_role: false).each do |item| %>
             <%= link_to [item.repo, item], class:"text-decoration-none text-dark" do %>
                 <div class="list-group">
                     <li class="list-group-item list-group-item-action">

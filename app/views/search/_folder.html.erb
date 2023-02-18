@@ -1,8 +1,8 @@
 <div class="mb-3">
-    <% if !folders.blank? %>
-        <h2><%= folders.count if folders.count != 0 %> <%= folders.count > 1 ? "Folders" : "Folder" %></h2>
+    <% if !folders.where(private_role: false).blank? %>
+        <h2><%= folders.where(private_role: false).count if folders.where(private_role: false).count != 0 %> <%= folders.where(private_role: false).count > 1 ? "Folders" : "Folder" %></h2>
         <hr>
-        <% folders.each do |folder| %>
+        <% folders.where(private_role: false).each do |folder| %>
             <%= link_to [folder.repo, folder], class:"text-decoration-none text-dark" do %>
                 <div class="list-group">
                     <li class="list-group-item list-group-item-action">

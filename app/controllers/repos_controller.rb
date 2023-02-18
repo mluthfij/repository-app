@@ -63,8 +63,12 @@ class ReposController < ApplicationController
   def private_fiture
     if @repo.private_role == true
       @repo.update_attribute(:private_role, false)
+      @repo.folders.update_all(private_role: false)
+      @repo.items.update_all(private_role: false)
     elsif @repo.private_role == false
       @repo.update_attribute(:private_role, true)
+      @repo.folders.update_all(private_role: false)
+      @repo.items.update_all(private_role: true)
     end
     redirect_to request.referrer
   end

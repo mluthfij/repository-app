@@ -1,5 +1,5 @@
 <div class="mb-3">
-    <% if !repositories.blank? %>
+    <% if !repositories.where(private_role: false).blank? %>
         <h2><%= repositories.where(private_role: false).count if repositories.where(private_role: false).count != 0 %> <%= repositories.where(private_role: false).count > 1 ? "Repositories" : "Repository" %></h2>
         <hr>
         <% repositories.where(private_role: false).each do |repo| %>
