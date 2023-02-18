@@ -51,6 +51,6 @@ class FoldersController < ApplicationController
     end
     
     def params_folder
-        params[:folder].permit(:name, :subfolder_id, :user_id)
+        params[:folder].permit(:name, :subfolder_id, :user_id, :private_role)
     end
 end
