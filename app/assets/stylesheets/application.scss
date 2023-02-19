@@ -69,25 +69,9 @@ body {
     text-decoration: underline;
 }
 
-
-
-// Box
-#context-menu {
-    // background-color: #ffffff;
-    // box-shadow: 0 0 20px rgba(37, 40, 42, 0.22);
-    // color: #1f194c;
-    width: 10em;
-    // padding: 0.8em 0.6em;
-    // font-size: 1.3rem;
-    position: fixed;
-    visibility: hidden;
-}
-
-.item {
-    // padding: 0.3em 1.2em;
-}
-
-.item:hover {
-    // background-color: rgba(44, 141, 247, 0.2);
-    cursor: pointer;
+// menu pop up
+.menu {
+    position: absolute;
+    top: 0;
+    left: -100%;
 }

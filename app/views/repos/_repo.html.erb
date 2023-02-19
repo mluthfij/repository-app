@@ -27,7 +27,7 @@
                   </li>
                   <li>
                     <a class="" href="#">
-                      <%= link_to 'Destroy', repo, data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class:"dropdown-item" %>
+                      <%= link_to 'Destroy', repo, data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete }, class:"dropdown-item" %>
                     </a>
                   </li>
                 </ul>
@@ -41,7 +41,7 @@
               </small>
               <% if params[:action] == 'show' %>
                 <% if current_user.id == repo.user.id %>
-                  <%= link_to repo.private_role == true ? "Public" : "Private", private_fiture_path(repo), data: { turbo_method: :patch }, class:repo.private_role == true ? "btn btn-warning" : "btn btn-danger" %>
+                  <%= link_to repo.private_role == true ? "Public" : "Private", private_fiture_path(repo), data: { turbo: true, turbo_method: :patch }, class:repo.private_role == true ? "btn btn-warning" : "btn btn-danger" %>
                 <% end %>
               <% end %>
             </div>
