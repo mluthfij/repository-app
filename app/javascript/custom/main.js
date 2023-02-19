@@ -4,6 +4,7 @@ const menu = document.querySelector('.menu');
 
 // show menu
 showmenu();
+
 function showmenu(){
     boxes.forEach(box =>{
         box.addEventListener('contextmenu',function(e){
@@ -17,6 +18,7 @@ function showmenu(){
         })
     })
 }
+// 
 
 // hidden menu
 wrapper.addEventListener('click', hidmenu);

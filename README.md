@@ -55,3 +55,5 @@ Things you may want to cover:
             <div class="font list-group-item list-group-item-action">font color</div>
             <div class="paragraphe list-group-item list-group-item-action">paragraphe color</div>
         </div>
+
+         data-turbo="false"
