@@ -1,5 +1,5 @@
 const boxes = document.querySelectorAll('.box');
-const wrapper = document.querySelector('.wrapper');
+const thewrapper = document.querySelector('.thewrapper');
 const menu = document.querySelector('.menu');
 
 // show menu
@@ -21,7 +21,7 @@ function showmenu(){
 // 
 
 // hidden menu
-wrapper.addEventListener('click', hidmenu);
+thewrapper.addEventListener('click', hidmenu);
 function hidmenu(e){
     if(e.target.className != 'menu'){
         menu.style.display = 'none';

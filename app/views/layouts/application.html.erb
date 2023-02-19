@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="wrapper d-flex flex-column <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
+  <body class="thewrapper d-flex flex-column <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
     <%= render "layouts/components/navbar" %>
     <%= render "layouts/components/alert" if notice || alert %>
     <div id="page-content" class="box">
