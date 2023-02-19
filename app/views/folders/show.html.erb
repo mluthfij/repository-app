@@ -91,3 +91,8 @@
     </div>
   </div>
 </div>
+
+<% if @folder.user.id == current_user.id %>
+  <%= render 'layouts/modals/modal_folder', locals: { repo: @folder.repo, subfolder: @folder } %>
+  <%= render 'layouts/modals/modal_item_folder', locals: { repo: @folder.repo, subfolder: @folder } %>
+<% end %>

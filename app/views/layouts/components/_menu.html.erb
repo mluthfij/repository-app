@@ -1,4 +1,11 @@
 <div class="list-group menu">
-    <%= link_to "New repo", new_repo_path, class:"list-group-item list-group-item-action" %>
-    <%= link_to "New repo", new_repo_path, class:"list-group-item list-group-item-action" %>
+    <%= link_to "New repo", new_repo_path, class: cookies[:moon] ? "list-group-item list-group-item-action list-group-item-dark" : "list-group-item list-group-item-action" %>
+    <!-- Button trigger modal folder -->
+    <button type="button" class="list-group-item list-group-item-action <%= "list-group-item-dark" if cookies[:moon] %>" data-bs-toggle="modal" data-bs-target="#createFolderModal">
+        Create new folder
+    </button>
+    <!-- Button trigger modal item -->
+    <button type="button" class="list-group-item list-group-item-action <%= "list-group-item-dark" if cookies[:moon] %>" data-bs-toggle="modal" data-bs-target="#createItemModal">
+        Create new item
+    </button>
 </div>
