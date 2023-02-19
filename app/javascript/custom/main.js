@@ -1,10 +1,17 @@
 const boxes = document.querySelectorAll('.box');
+<<<<<<< HEAD
 const thewrapper = document.querySelector('.thewrapper');
+=======
+const wrapper = document.querySelector('.wrapper');
+>>>>>>> add right click
 const menu = document.querySelector('.menu');
 
 // show menu
 showmenu();
+<<<<<<< HEAD
 
+=======
+>>>>>>> add right click
 function showmenu(){
     boxes.forEach(box =>{
         box.addEventListener('contextmenu',function(e){
