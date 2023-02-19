@@ -23,37 +23,9 @@
           <div class="col text-end">
             <%= link_to 'Exit', repos_path, class:"btn" %>
             <%= link_to "Edit this repo", edit_repo_path(@repo), class:"btn" if @repo.user_id == current_user.id %>
-            <%= link_to 'Destroy', @repo, data: { turbo_confirm:"are you sure?", turbo_method: :delete }, class:"btn btn-danger" if @repo.user_id == current_user.id %>
+            <%= link_to 'Destroy', @repo, data: { turbo: true, turbo_confirm:"are you sure?", turbo_method: :delete }, class:"btn btn-danger" if @repo.user_id == current_user.id %>
           </div>
         </div>
-        <% if @repo.user_id == current_user.id %>
-          <div class="accordion accordion-flush my-2" id="accordionFlushExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed bg-secondary rounded" style="--bs-bg-opacity: .5;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  <i class="bi bi-folder-plus"> </i> Add new folder
-                </button>
-              </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                  <%= render partial: 'folders/form', locals: { repo: @repo, subfolder: nil } %>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed bg-secondary rounded" style="--bs-bg-opacity: .5;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                  <i class="bi bi-file-earmark-plus"> </i> Add new item
-                </button>
-              </h2>
-              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                  <%= render partial: 'items/form', locals: { repo: @repo, folder_id: nil } %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
       </div>
     </div>
     <hr>
@@ -74,3 +46,8 @@
     </div>
   </div>
 </div>
+
+<% if @repo.user_id == current_user.id %>
+  <%= render 'layouts/modals/modal_form', locals: { repo: @repo, subfolder: nil } %>
+  <%= render 'layouts/modals/modal_item_repo', locals: { repo: @repo, folder_id: nil } %>
+<% end %>

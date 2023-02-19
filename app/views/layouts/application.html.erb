@@ -10,25 +10,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="d-flex flex-column <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>">
+  <body class="thewrapper d-flex flex-column <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
     <%= render "layouts/components/navbar" %>
     <%= render "layouts/components/alert" if notice || alert %>
-    <div id="page-content">
-    
+    <div id="page-content" class="box">
       <div class="container-fluid my-4">
-      <%#  %>
-        <%# <div id="context-menu">
-          <div class="item">View</div>
-        </div> %>
-        <ul class="list-group" id="context-menu">
-          <li class="item list-group-item list-group-item-action">An item</li>
-          <li class="item list-group-item list-group-item-action">An item</li>
-          <li class="item list-group-item list-group-item-action">An item</li>
-        </ul>
-      <%#  %>
         <%= yield %>
       </div>
     </div>
     <%= render "layouts/components/footer" %>
+    <%= render "layouts/components/menu" %>
   </body>
 </html>

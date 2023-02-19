@@ -16,7 +16,7 @@
         </div>
         <div class="col text-center"><%= time_ago_in_words(item.created_at) %> ago</div>
         <div class="col text-end">
-            <%= link_to 'Delete', [item.repo, item], class:"text-decoration-custom-color", data: { turbo_confirm: 'Are you sure?', turbo_method: :delete } if item.user.id == current_user.id %>
+            <%= link_to 'Delete', [item.repo, item], class:"text-decoration-custom-color", data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete } if item.user.id == current_user.id %>
         </div>
     </div>
 </div>
