@@ -23,7 +23,7 @@
           <div class="col text-end">
             <%= link_to 'Exit', repos_path, class:"btn" %>
             <%= link_to "Edit this repo", edit_repo_path(@repo), class:"btn" if @repo.user_id == current_user.id %>
-            <%= link_to 'Destroy', @repo, data: { turbo_confirm:"are you sure?", turbo_method: :delete }, class:"btn btn-danger" if @repo.user_id == current_user.id %>
+            <%= link_to 'Destroy', @repo, data: { turbo: true, turbo_confirm:"are you sure?", turbo_method: :delete }, class:"btn btn-danger" if @repo.user_id == current_user.id %>
           </div>
         </div>
         <% if @repo.user_id == current_user.id %>

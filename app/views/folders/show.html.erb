@@ -18,7 +18,7 @@
           </div>
           <div class="col text-end">
             <%= link_to 'Exit', repos_path, class:"btn" %>
-            <%= link_to 'Delete', [@folder.repo, @folder], class:'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } if @folder.user.id == current_user.id %>
+            <%= link_to 'Delete', [@folder.repo, @folder], class:'btn btn-danger', data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete } if @folder.user.id == current_user.id %>
           </div>
         </div>
         <% if @folder.user.id == current_user.id %>
