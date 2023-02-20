@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Repository</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Repository</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body class="thewrapper d-flex flex-column <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
-    <%= render "layouts/components/navbar" %>
-    <%= render "layouts/components/alert" if notice || alert %>
-    <div id="page-content" class="box">
-      <div class="container-fluid my-4">
-        <%= yield %>
-      </div>
-    </div>
-    <%= render "layouts/components/footer" %>
-    <%= render "layouts/components/menu" %>
-  </body>
+        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+        <%= javascript_importmap_tags %>
+    </head>
+    <body class="thewrapper <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
+        <%= render "layouts/components/navbar" %>
+        <div class="d-flex" id="wrapper">
+            <%= render "layouts/components/sidebar" %>
+            <div class="d-flex flex-column" id="page-content-wrapper">
+                <div class="container-fluid box" id="page-content">
+                    <%= render "layouts/components/alert" if notice || alert %>
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
+        <%= render "layouts/components/footer" %>
+        <%= render "layouts/components/menu" %>
+    </body>
 </html>
