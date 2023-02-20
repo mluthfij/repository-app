@@ -13,17 +13,16 @@
         <%= javascript_importmap_tags %>
     </head>
     <body class="thewrapper <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
-        <%= render "layouts/components/navbar" %>
         <div class="d-flex" id="wrapper">
             <%= render "layouts/components/sidebar" %>
-            <div class="d-flex flex-column" id="page-content-wrapper">
-                <div class="container-fluid box" id="page-content">
+            <div class="box bg-danger" id="page-content-wrapper">
+                <%= render "layouts/components/navbar" %>
+                <div class="container-fluid">
                     <%= render "layouts/components/alert" if notice || alert %>
                     <%= yield %>
                 </div>
             </div>
         </div>
-        <%= render "layouts/components/footer" %>
-        <%= render "layouts/components/menu" %>
     </body>
+    <%= render "layouts/components/menu" %>
 </html>
