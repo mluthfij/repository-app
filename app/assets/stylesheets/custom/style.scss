@@ -1,0 +1,45 @@
+#moon {
+    background: #222831;
+    background: linear-gradient(to right, #393E46, #222831);
+}
+
+#sun {
+    background: #fdfdfd;
+    background: linear-gradient(to right, #afc6ec, #456697);
+}
+
+.nav-bg {
+    background-color: #afc6ec;
+}
+
+.center-card {
+    margin: auto;
+    width: 40%;
+    // border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+.text-decoration-custom-color {
+    text-decoration: none;
+    color: #222831;
+}
+
+.text-decoration-custom-color:hover {
+    text-decoration: underline;
+}
+
+.text-decoration-custom {
+    text-decoration: none;
+}
+
+.text-decoration-custom:hover {
+    text-decoration: underline;
+}
+
+// menu pop up
+.menu {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 2;
+}
