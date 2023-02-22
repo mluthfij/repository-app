@@ -2,25 +2,33 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Repository</title>
+        <title>Sidenav Light - SB Admin</title>
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
 
         <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
         <%= javascript_importmap_tags %>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body class="thewrapper <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
-        <div class="d-flex" id="wrapper">
-            <%= render "layouts/components/sidebar" %>
-            <div class="box bg-danger" id="page-content-wrapper">
-                <%= render "layouts/components/navbar" %>
-                <div class="container-fluid">
-                    <%= render "layouts/components/alert" if notice || alert %>
-                    <%= yield %>
-                </div>
+    <body class="sb-nav-fixed thewrapper <%= cookies[:moon] ? "text-white" : "text-dark" %>" id="<%= cookies[:moon] ? "moon" : "sun" %>" data-turbo="false">
+        <%= render "layouts/components/navbar" %>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <%= render "layouts/components/sidebar" %>
+            </div>
+            <div class="box" id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <%= render "layouts/components/alert" if notice || alert %>
+                        <%= yield %>
+                    </div>
+                </main>
+                <%= render "layouts/components/footer" %>
             </div>
         </div>
     </body>
