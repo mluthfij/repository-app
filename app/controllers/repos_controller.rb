@@ -7,6 +7,7 @@ class ReposController < ApplicationController
   # GET /repos or /repos.json
   def index
     @repos = Repo.page(params[:page]).per(9)
+    @repo = current_user.repos.build
   end
 
   # GET /repos/1 or /repos/1.json

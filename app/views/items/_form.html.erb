@@ -3,7 +3,7 @@
         <%= f.hidden_field :folder_id, value: @folder.id %>
     <% end %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.text_field :private_role, value: @repo.private_role %>
+    <%= f.hidden_field :private_role, value: @repo.private_role %>
 
     <p>
         <%= f.label :posts, 'Item name*', class:"form-label" %>
@@ -12,7 +12,7 @@
         <%= f.hidden_field :item_file, id:'outputfile' %>
         <%= f.hidden_field :item_extension, id:'extension' %>
     <p>
-        <%= f.submit 'Upload item', class:"btn btn-success" %>
+        <%= f.submit 'Upload file', class:"btn btn-success" %>
     </p>
 <% end %>
 
@@ -26,9 +26,3 @@
         extension.value = inputfile.value.split('.')[1];
     }
 </script>
-
-
-<%# <input id='inputfile' type='file' name='inputfile' onChange='getoutput()'><br> %>
-<%# <input id='inputfile' type='file' onChange='getoutput()'><br> %>
-    <%# Output Filename <input id='outputfile' type='text' name='outputfile'><br> %>
-    <%# Extension <input id='extension' type='text' name='extension'> %>

@@ -1,4 +1,17 @@
 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+    <li class="nav-item me-2 dropdown d-xxl-none d-xxl-block d-xl-none d-lg-none d-xl-block d-md-none d-lg-block">
+        <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" style="width:250px;">
+            <%= form_tag search_path, method: :get, class:"px-4 py-3" do |f| %>
+                <div class="input-group">
+                    <%= text_field_tag :q, params[:q], class:"form-control", placeholder:"Search for..." %>
+                    <%= button_tag '<i class="fas fa-search"></i>'.html_safe, class:"btn btn-primary", id:"btnNavbarSearch" %>
+                </div>
+            <% end %>
+        </div>
+    </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -18,18 +31,6 @@
                 </li>
                 <li>
                     <%= link_to "Sign up", new_user_registration_path, class:"dropdown-item" %>
-                </li>
-            <% end %>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <% if cookies[:moon] %>
-                <li>
-                    <%= button_to ' Light mode', sun_path, method: :get, class:"dropdown-item bi bi-sun" %>
-                </li>
-            <% else %>
-                <li>
-                    <%= button_to ' Dark Mode', moon_path, method: :get, class:"dropdown-item bi bi-moon" %>
                 </li>
             <% end %>
         </ul>
